@@ -69,6 +69,7 @@ def main(names, pdf_files):
             results.append({"Nome": name, "PDF": pdf_file.name})
 
     df = pd.DataFrame(results).drop_duplicates()  # Remove duplicatas
+    df = df.sort_values(by="Nome")  # Ordena os resultados em ordem alfabética
     return df
 
 
@@ -98,4 +99,3 @@ if st.button("Analisar PDFs"):
                 # Download CSV
                 csv = resultados.to_csv(index=False).encode("utf-8")
                 st.download_button("Baixar resultados em CSV", data=csv, file_name="resultados.csv", mime="text/csv")
-
